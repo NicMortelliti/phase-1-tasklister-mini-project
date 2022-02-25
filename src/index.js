@@ -30,8 +30,6 @@ function buildToDo(todo) {
   // Append button to the p element
   p.appendChild(btn);
 
-  console.log(p);
-
   // Append this new paragraph to tasks ul
   document.querySelector("#tasks").appendChild(p);
 }
@@ -40,3 +38,26 @@ function buildToDo(todo) {
 function handleDelete(e) {
   e.target.parentNode.remove();
 }
+
+// Function to build generic dropdown selection
+function buildSelect(choices) {
+  // Define new selection element
+  const sel = document.createElement("select");
+
+  choices.forEach(e => {
+    let level = document.createElement("option");
+    level.textContent = e;
+    sel.appendChild(level);
+  });
+
+  // Return newly build dropdown
+  return sel;
+}
+
+// Define priority levels and call buildSelect function
+const priority = ["High", "Medium", "Low"];
+const prioritySelect = buildSelect(priority);
+
+// Insert a dropdown selection for priority classification
+let refNode = document.getElementById("new-task-description");
+refNode.parentNode.insertBefore(prioritySelect, refNode.nextSibling);
